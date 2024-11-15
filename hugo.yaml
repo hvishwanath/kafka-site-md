@@ -140,7 +140,7 @@ params:
 
   # A link to latest version of the docs. Used in the "version-banner" partial to
   # point people to the main doc site.
-  url_latest_version: /docs/3.9/
+  url_latest_version: /3.9/
 
   # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
   github_repo: https://github.com/google/docsy-example
@@ -205,32 +205,28 @@ params:
   links:
     # End user relevant links. These will show up on left side of footer and in the community page if you have one.
     user:
-      - name: User mailing list
-        url: https://example.org/mail
+      - name: Contact
+        url: /community/contact/
         icon: fa fa-envelope
         desc: Discussion and help from your fellow users
       - name: Twitter
-        url: https://example.org/twitter
+        url: https://twitter.com/apachekafka
         icon: fab fa-twitter
         desc: Follow us on Twitter to get the latest news!
       - name: Stack Overflow
-        url: https://example.org/stack
+        url: https://stackoverflow.com/questions/tagged/apache-kafka
         icon: fab fa-stack-overflow
-        desc: Practical questions and curated answers
+        desc: Apache Kafka questions on Stack Overflow
     # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
     developer:
       - name: GitHub
-        url: https://github.com/google/docsy
+        url: https://github.com/apache/kafka
         icon: fab fa-github
-        desc: Development takes place here!
-      - name: Slack
-        url: https://example.org/slack
-        icon: fab fa-slack
-        desc: Chat with other project developers
+        desc: Apache Kafka source code
       - name: Developer mailing list
-        url: https://example.org/mail
+        url: mailto:dev@kafka.apache.org
         icon: fa fa-envelope
-        desc: Discuss development issues around the project
+        desc: Developer mailing list
 
   
 module:
