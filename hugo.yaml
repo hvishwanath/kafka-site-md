@@ -1,5 +1,5 @@
 baseURL: https://example.docsy.dev
-title: Goldydocs
+# title: Apache Kafka
 
 # cSpell:ignore goldmark github hugo readingtime docsy subdir lastmod pygments linenos catmullrom norsk gu
 
@@ -46,28 +46,9 @@ imaging:
 languages:
   en:
     languageName: English
-    title: Goldydocs
+    # title: kafka
     params:
-      description: A Docsy example site
-  # cSpell:disable
-  'no':
-    languageName: Norsk
-    contentDir: content/no
-    title: Gulldoks
-    params:
-      description: Docsy er operativsystem for skyen
-      time_format_default: 02.01.2006
-      time_format_blog: 02.01.2006
-  fa:
-    languageDirection: rtl
-    languageName: "فارسی (Persian)"
-    contentDir: content/fa
-    title: "اسناد گلدی"
-    params:
-      description: "یک نمونه برای پوسته داکسی"
-      time_format_default: 2006.01.02
-      time_format_blog: 2006.01.02
-  # cSpell:enable
+      description: Apache Kafka
 
 markup:
   goldmark:
@@ -88,7 +69,37 @@ markup:
 outputs:
   section: [HTML, print, RSS]
 
+# menu:
+#   main:
+#     - name: doc
+#       url: /latest/docs/
+#       weight: 1
+      
+#     - name: "Documentation"
+#       url: "/latest/docs/"
+#       weight: 1
+#     - name: "Version 1.0"
+#       url: "/v1.0/docs/"
+#       weight: 2
+#     - name: "Version 2.0"
+#       url: "/v2.0/docs/"
+#       weight: 3
+
+menu:
+  main:
+    # Point this to the latest documentation version.
+    - name: "Documentation"
+      url: "/3.9/"
+      weight: 20
+    # Add a top level menu pointing to downloads page
+    - name: "Download Kafka"
+      url: "/community/downloads/"
+      weight: 50
+      # Submenu items
+
 params:
+  print: 
+    disable_toc: false
   taxonomy:
     # set taxonomyCloud = [] to hide taxonomy clouds
     taxonomyCloud: [tags, categories]
@@ -99,7 +110,7 @@ params:
     # set taxonomyPageHeader = [] to hide taxonomies on the page headers
     taxonomyPageHeader: [tags, categories]
 
-  privacy_policy: https://policies.google.com/privacy
+  privacy_policy: https://privacy.apache.org/policies/privacy-policy-public.html
 
   # First one is picked as the Twitter card image if not set on page.
   # images: [images/project-illustration.png]
@@ -111,16 +122,25 @@ params:
   # Flag used in the "version-banner" partial to decide whether to display a
   # banner on every page indicating that this is an archived version of the docs.
   # Set this flag to "true" if you want to display the banner.
-  archived_version: false
+  archived_version: true
 
   # The version number for the version of the docs represented in this doc set.
   # Used in the "version-banner" partial to display a version number for the
   # current doc set.
-  version: 0.0
+  version: 3.9
+  versions:
+    - version: 3.8
+      url: /3.8/
+      archived_version: true
+    - version: 3.7
+      url: /3.7/
+    - version: 3.6  
+      url: /3.6/
+
 
   # A link to latest version of the docs. Used in the "version-banner" partial to
   # point people to the main doc site.
-  url_latest_version: https://example.com
+  url_latest_version: /docs/3.9/
 
   # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
   github_repo: https://github.com/google/docsy-example
@@ -136,17 +156,17 @@ params:
   github_branch: main
 
   # Google Custom Search Engine ID. Remove or comment out to disable search.
-  gcs_engine_id: d72aa9b2712488cc3
+  # gcs_engine_id: d72aa9b2712488cc3
 
   # Enable Lunr.js offline search
-  offlineSearch: false
+  offlineSearch: true
 
   # Enable syntax highlighting and copy buttons on code blocks with Prism
   prism_syntax_highlighting: false
 
   copyright:
-    authors: Docsy Authors | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0) |
-    from_year: 2018
+    authors: By [Apache Software Foundation](https://www.apache.org/) under the terms of the [Apache License v2](https://www.apache.org/licenses/LICENSE-2.0)
+    from_year: 2014
 
   # User interface configuration
   ui:
@@ -154,12 +174,15 @@ params:
     breadcrumb_disable: false
     # Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top navbar
     navbar_logo: true
+    # logo: /logos/kafka-logo-no-text.png
+    # logo: /assets/kafka.svg
     # Set to true if you don't want the top navbar to be translucent when over a `block/cover`, like on the homepage.
-    navbar_translucent_over_cover_disable: false
+    navbar_translucent_over_cover_disable: true
     # Enable to show the side bar menu in its compact state.
     sidebar_menu_compact: false
     # Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
-    sidebar_search_disable: false
+    sidebar_search_disable: true
+    sidebar_menu_foldable: true
 
     # Adds a H2 section titled "Feedback" to the bottom of each doc. The responses are sent to Google Analytics as events.
     # This feature depends on [services.googleAnalytics] and will be disabled if "services.googleAnalytics.id" is not set.
@@ -209,6 +232,7 @@ params:
         icon: fa fa-envelope
         desc: Discuss development issues around the project
 
+  
 module:
   # Uncomment the next line to build and serve using local docsy clone declared in the named Hugo workspace:
   # workspace: docsy.work
