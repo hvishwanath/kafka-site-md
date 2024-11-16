@@ -16,8 +16,7 @@
 {{ if $isArchived }}
   {{ $color := "warning" }}
   <div class="pageinfo pageinfo-{{ $color }}">
-    {{ with $current_version }}<p>You are viewing an older version ({{ $olderVersion | markdownify }}) of the
-      documentation for Apache Kafka. 
+    {{ with $current_version }}<p>You are viewing documentation for an older version ({{ $olderVersion | markdownify }}) of Kafka. 
       {{ with $latest_version }}For up-to-date documentation, see the 
         <a href="{{ $latest_version | safeURL }}" target="_blank">latest version</a>.</p>
       {{ end }}

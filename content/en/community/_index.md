@@ -5,10 +5,10 @@ menu: {main: {weight: 40}}
 # Add blocks of content here to add more sections to the community page
 ---
 
-Apache Kafka is a thriving project because of its vibrant community. Below are some useful resources.
+Below are some useful resources.
 
 
-{{< blocks/section color="light" type="row" >}}
+{{< blocks/section color="dark" type="row" >}}
 {{% blocks/feature icon="fa-link" title="Project JIRA" %}}
 [Follow current development and issues](https://issues.apache.org/jira/browse/KAFKA)
 Please follow this space for updates!

@@ -1,4 +1,26 @@
-FROM floryn90/hugo:ext-alpine
+# Stage 1: Build the Hugo site
+FROM hugomods/hugo:exts as builder
 
-RUN apk add git && \
-  git config --global --add safe.directory /src
+# Set the working directory inside the container
+WORKDIR /src
+
+# Copy the entire site into the container
+COPY . .
+
+# Install npm packages
+RUN npm install
+
+# Build the site
+RUN hugo
+
+# Stage 2: Serve the site with Nginx
+FROM nginx:alpine
+
+# Copy the generated site from the builder stage to the Nginx html directory
+COPY --from=builder /src/public /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
