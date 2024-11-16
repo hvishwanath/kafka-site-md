@@ -7,8 +7,8 @@ title: Apache Kafka
 <a class="btn btn-lg btn-primary me-3 mb-4" href="/3.9/">
   Learn More <i class="fas fa-arrow-alt-circle-right ms-2"></i>
 </a>
-<a class="btn btn-lg btn-secondary me-3 mb-4" href="/community/downloads">
-  Download <i class="fab fa-github ms-2 "></i>
+<a class="btn btn-lg btn-secondary me-3 mb-4" href="/community/downloads/">
+  Download <i class="fa-solid fa-download ms-2 "></i>
 </a>
 <p class="lead mt-5"><i>More than 80% of all Fortune 100 companies trust, and use Apache Kafka.</i></p>
 {{< blocks/link-down color="info" >}}
