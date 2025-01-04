@@ -22,7 +22,7 @@ We encourage all new development to use the new Java producer. This client is pr
     	</dependency>
     
 
-Examples showing how to use the producer are given in the [javadocs](/statichttp://kafka.apache.org/090/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html "Kafka 0.9.0 Javadoc"). 
+Examples showing how to use the producer are given in the [javadocs](/http://kafka.apache.org/090/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html "Kafka 0.9.0 Javadoc"). 
 
 For those interested in the legacy Scala producer api, information can be found [ here](http://kafka.apache.org/081/documentation.html#producerapi). 
 
@@ -153,4 +153,4 @@ This new unified consumer API removes the distinction between the 0.8 high-level
     	</dependency>
     
 
-Examples showing how to use the consumer are given in the [javadocs](/statichttp://kafka.apache.org/090/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html "Kafka 0.9.0 Javadoc"). 
+Examples showing how to use the consumer are given in the [javadocs](/http://kafka.apache.org/090/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html "Kafka 0.9.0 Javadoc"). 

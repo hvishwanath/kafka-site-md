@@ -1,5 +1,5 @@
 # Stage 1: Build the Hugo site
-FROM hugomods/hugo:exts as builder
+FROM hugomods/hugo:exts-0.136.5 as builder
 
 # Set the working directory inside the container
 WORKDIR /src
@@ -9,6 +9,8 @@ COPY . .
 
 # Install npm packages
 RUN npm install
+
+RUN npm update postcss
 
 # Build the site
 RUN hugo

@@ -21,7 +21,7 @@ Kafka exposes all its functionality over a language independent protocol which h
 
 The Producer API allows applications to send streams of data to topics in the Kafka cluster. 
 
-Examples showing how to use the producer are given in the [javadocs](/static/23/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html "Kafka 2.3 Javadoc"). 
+Examples showing how to use the producer are given in the [javadocs](/23/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html "Kafka 2.3 Javadoc"). 
 
 To use the producer, you can use the following maven dependency: 
     
@@ -37,7 +37,7 @@ To use the producer, you can use the following maven dependency:
 
 The Consumer API allows applications to read streams of data from topics in the Kafka cluster. 
 
-Examples showing how to use the consumer are given in the [javadocs](/static/23/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html "Kafka 2.3 Javadoc"). 
+Examples showing how to use the consumer are given in the [javadocs](/23/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html "Kafka 2.3 Javadoc"). 
 
 To use the consumer, you can use the following maven dependency: 
     
@@ -53,7 +53,7 @@ To use the consumer, you can use the following maven dependency:
 
 The Streams API allows transforming streams of data from input topics to output topics. 
 
-Examples showing how to use this library are given in the [javadocs](/static/23/javadoc/index.html?org/apache/kafka/streams/KafkaStreams.html "Kafka 2.3 Javadoc")
+Examples showing how to use this library are given in the [javadocs](/23/javadoc/index.html?org/apache/kafka/streams/KafkaStreams.html "Kafka 2.3 Javadoc")
 
 Additional documentation on using the Streams API is available [here](/23/streams). 
 
@@ -85,7 +85,7 @@ The Connect API allows implementing connectors that continually pull from some s
 
 Many users of Connect won't need to use this API directly, though, they can use pre-built connectors without needing to write any code. Additional information on using Connect is available [here](/documentation.html#connect). 
 
-Those who want to implement custom connectors can see the [javadoc](/static/23/javadoc/index.html?org/apache/kafka/connect "Kafka 2.3 Javadoc"). 
+Those who want to implement custom connectors can see the [javadoc](/23/javadoc/index.html?org/apache/kafka/connect "Kafka 2.3 Javadoc"). 
 
 # AdminClient API
 
@@ -101,4 +101,4 @@ To use the AdminClient API, add the following Maven dependency:
     		</dependency>
     	
 
-For more information about the AdminClient APIs, see the [javadoc](/static/23/javadoc/index.html?org/apache/kafka/clients/admin/AdminClient.html "Kafka 2.3 Javadoc"). 
+For more information about the AdminClient APIs, see the [javadoc](/23/javadoc/index.html?org/apache/kafka/clients/admin/AdminClient.html "Kafka 2.3 Javadoc"). 

@@ -22,7 +22,7 @@ As of the 0.8.2 release we encourage all new development to use the new Java pro
     	</dependency>
     
 
-Examples showing how to use the producer are given in the [javadocs](/statichttp://kafka.apache.org/082/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html "Kafka 0.8.2 Javadoc"). 
+Examples showing how to use the producer are given in the [javadocs](/http://kafka.apache.org/082/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html "Kafka 0.8.2 Javadoc"). 
 
 For those interested in the legacy Scala producer api, information can be found [ here](http://kafka.apache.org/081/documentation.html#producerapi). 
 

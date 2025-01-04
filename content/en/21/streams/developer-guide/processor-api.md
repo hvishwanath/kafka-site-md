@@ -35,7 +35,7 @@ The Processor API can be used to implement both **stateless** as well as **state
 
 **Combining the DSL and the Processor API:** You can combine the convenience of the DSL with the power and flexibility of the Processor API as described in the section [Applying processors and transformers (Processor API integration)](dsl-api.html#streams-developer-guide-dsl-process).
 
-For a complete list of available API functionality, see the [Streams](/static/21/javadoc/org/apache/kafka/streams/package-summary.html) API docs.
+For a complete list of available API functionality, see the [Streams](/21/javadoc/org/apache/kafka/streams/package-summary.html) API docs.
 
 # Defining a Stream Processor
 
@@ -140,7 +140,7 @@ Persistent `KeyValueStore<K, V>` | RocksDB | Yes (enabled by default) |
   * Stores its data on local disk.
   * Storage capacity: managed local state can be larger than the memory (heap space) of an application instance, but must fit into the available local disk space.
   * RocksDB settings can be fine-tuned, see [RocksDB configuration](config-streams.html#streams-developer-guide-rocksdb-config).
-  * Available [store variants](/static/21/javadoc/org/apache/kafka/streams/state/Stores.PersistentKeyValueFactory.html): time window key-value store, session window key-value store.
+  * Available [store variants](/21/javadoc/org/apache/kafka/streams/state/Stores.PersistentKeyValueFactory.html): time window key-value store, session window key-value store.
 
 
     
@@ -234,7 +234,7 @@ Here is an example for enabling fault tolerance, with additional changelog-topic
 
 You can use the built-in state store types or implement your own. The primary interface to implement for the store is `org.apache.kafka.streams.processor.StateStore`. Kafka Streams also has a few extended interfaces such as `KeyValueStore`.
 
-Note that your customized `org.apache.kafka.streams.processor.StateStore` implementation also needs to provide the logic on how to restore the state via the `org.apache.kafka.streams.processor.StateRestoreCallback` or `org.apache.kafka.streams.processor.BatchingStateRestoreCallback` interface. Details on how to instantiate these interfaces can be found in the [javadocs](/static/21/javadoc/org/apache/kafka/streams/processor/StateStore.html).
+Note that your customized `org.apache.kafka.streams.processor.StateStore` implementation also needs to provide the logic on how to restore the state via the `org.apache.kafka.streams.processor.StateRestoreCallback` or `org.apache.kafka.streams.processor.BatchingStateRestoreCallback` interface. Details on how to instantiate these interfaces can be found in the [javadocs](/21/javadoc/org/apache/kafka/streams/processor/StateStore.html).
 
 You also need to provide a "builder" for the store by implementing the `org.apache.kafka.streams.state.StoreBuilder` interface, which Kafka Streams uses to create instances of your store.
 

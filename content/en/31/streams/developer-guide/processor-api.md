@@ -36,7 +36,7 @@ The Processor API can be used to implement both **stateless** as well as **state
 
 **Combining the DSL and the Processor API:** You can combine the convenience of the DSL with the power and flexibility of the Processor API as described in the section [Applying processors and transformers (Processor API integration)](dsl-api.html#streams-developer-guide-dsl-process).
 
-For a complete list of available API functionality, see the [Streams](/static/31/javadoc/org/apache/kafka/streams/package-summary.html) API docs.
+For a complete list of available API functionality, see the [Streams](/31/javadoc/org/apache/kafka/streams/package-summary.html) API docs.
 
 # Defining a Stream Processor
 
@@ -139,9 +139,9 @@ Persistent `KeyValueStore<K, V>` | RocksDB | Yes (enabled by default) |
   * Stores its data on local disk.
   * Storage capacity: managed local state can be larger than the memory (heap space) of an application instance, but must fit into the available local disk space.
   * RocksDB settings can be fine-tuned, see [RocksDB configuration](config-streams.html#streams-developer-guide-rocksdb-config).
-  * Available [store variants](/static/31/javadoc/org/apache/kafka/streams/state/Stores.html#persistentKeyValueStore-java.lang.String-): time window key-value store, session window key-value store.
-  * Use [persistentTimestampedKeyValueStore](/static/31/javadoc/org/apache/kafka/streams/state/Stores.html#persistentTimestampedKeyValueStore-java.lang.String-) when you need a persistent key-(value/timestamp) store that supports put/get/delete and range queries.
-  * Use [persistentTimestampedWindowStore](/static/31/javadoc/org/apache/kafka/streams/state/Stores.html#persistentTimestampedWindowStore-java.lang.String-java.time.Duration-java.time.Duration-boolean-) when you need a persistent windowedKey-(value/timestamp) store.
+  * Available [store variants](/31/javadoc/org/apache/kafka/streams/state/Stores.html#persistentKeyValueStore-java.lang.String-): time window key-value store, session window key-value store.
+  * Use [persistentTimestampedKeyValueStore](/31/javadoc/org/apache/kafka/streams/state/Stores.html#persistentTimestampedKeyValueStore-java.lang.String-) when you need a persistent key-(value/timestamp) store that supports put/get/delete and range queries.
+  * Use [persistentTimestampedWindowStore](/31/javadoc/org/apache/kafka/streams/state/Stores.html#persistentTimestampedWindowStore-java.lang.String-java.time.Duration-java.time.Duration-boolean-) when you need a persistent windowedKey-(value/timestamp) store.
 
 
     
@@ -164,9 +164,9 @@ In-memory `KeyValueStore<K, V>` | - | Yes (enabled by default) |
   * Stores its data in memory.
   * Storage capacity: managed local state must fit into memory (heap space) of an application instance.
   * Useful when application instances run in an environment where local disk space is either not available or local disk space is wiped in-between app instance restarts.
-  * Available [store variants](/static/31/javadoc/org/apache/kafka/streams/state/Stores.html#inMemoryKeyValueStore-java.lang.String-): time window key-value store, session window key-value store.
-  * Use [TimestampedKeyValueStore](/static/31/javadoc/org/apache/kafka/streams/state/TimestampedKeyValueStore.html) when you need a key-(value/timestamp) store that supports put/get/delete and range queries.
-  * Use [TimestampedWindowStore](/static/31/javadoc/org/apache/kafka/streams/state/TimestampedWindowStore.html) when you need to store windowedKey-(value/timestamp) pairs.
+  * Available [store variants](/31/javadoc/org/apache/kafka/streams/state/Stores.html#inMemoryKeyValueStore-java.lang.String-): time window key-value store, session window key-value store.
+  * Use [TimestampedKeyValueStore](/31/javadoc/org/apache/kafka/streams/state/TimestampedKeyValueStore.html) when you need a key-(value/timestamp) store that supports put/get/delete and range queries.
+  * Use [TimestampedWindowStore](/31/javadoc/org/apache/kafka/streams/state/TimestampedWindowStore.html) when you need to store windowedKey-(value/timestamp) pairs.
 
 
     
@@ -240,7 +240,7 @@ You can query timestamped state stores both with and without a timestamp.
 
   * For Processor API users, nothing changes in existing applications, and you have the option of using the timestamped stores.
   * For DSL operators, store data is upgraded lazily in the background.
-  * No upgrade happens if you provide a custom XxxBytesStoreSupplier, but you can opt-in by implementing the [TimestampedBytesStore](/static/31/javadoc/org/apache/kafka/streams/state/TimestampedBytesStore.html) interface. In this case, the old format is retained, and Streams uses a proxy store that removes/adds timestamps on read/write.
+  * No upgrade happens if you provide a custom XxxBytesStoreSupplier, but you can opt-in by implementing the [TimestampedBytesStore](/31/javadoc/org/apache/kafka/streams/state/TimestampedBytesStore.html) interface. In this case, the old format is retained, and Streams uses a proxy store that removes/adds timestamps on read/write.
 
 
 
@@ -248,7 +248,7 @@ You can query timestamped state stores both with and without a timestamp.
 
 You can use the built-in state store types or implement your own. The primary interface to implement for the store is `org.apache.kafka.streams.processor.StateStore`. Kafka Streams also has a few extended interfaces such as `KeyValueStore`.
 
-Note that your customized `org.apache.kafka.streams.processor.StateStore` implementation also needs to provide the logic on how to restore the state via the `org.apache.kafka.streams.processor.StateRestoreCallback` or `org.apache.kafka.streams.processor.BatchingStateRestoreCallback` interface. Details on how to instantiate these interfaces can be found in the [javadocs](/static/31/javadoc/org/apache/kafka/streams/processor/StateStore.html).
+Note that your customized `org.apache.kafka.streams.processor.StateStore` implementation also needs to provide the logic on how to restore the state via the `org.apache.kafka.streams.processor.StateRestoreCallback` or `org.apache.kafka.streams.processor.BatchingStateRestoreCallback` interface. Details on how to instantiate these interfaces can be found in the [javadocs](/31/javadoc/org/apache/kafka/streams/processor/StateStore.html).
 
 You also need to provide a "builder" for the store by implementing the `org.apache.kafka.streams.state.StoreBuilder` interface, which Kafka Streams uses to create instances of your store.
 

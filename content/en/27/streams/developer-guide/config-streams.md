@@ -31,7 +31,7 @@ Kafka and Kafka Streams configuration options must be configured before using St
 
 # Configuration parameter reference
 
-This section contains the most common Streams configuration parameters. For a full reference, see the [Streams](/static/27/javadoc/org/apache/kafka/streams/StreamsConfig.html) Javadocs.
+This section contains the most common Streams configuration parameters. For a full reference, see the [Streams](/27/javadoc/org/apache/kafka/streams/StreamsConfig.html) Javadocs.
 
   * Required configuration parameters
     * application.id
@@ -100,7 +100,7 @@ bootstrap.servers | Required | A list of host/port pairs to use for establishing
 
 # Optional configuration parameters
 
-Here are the optional [Streams](/static/27/javadoc/org/apache/kafka/streams/StreamsConfig.html) javadocs, sorted by level of importance:
+Here are the optional [Streams](/27/javadoc/org/apache/kafka/streams/StreamsConfig.html) javadocs, sorted by level of importance:
 
 >   * High: These parameters can have a significant impact on performance. Take care when deciding the values of these parameters.
 >   * Medium: These parameters can have some impact on performance. Your specific environment will determine how much tuning effort should be focused on these parameters.
@@ -155,8 +155,8 @@ windowstore.changelog.additional.retention.ms | Low | Added to a windows maintai
 
 > The default deserialization exception handler allows you to manage record exceptions that fail to deserialize. This can be caused by corrupt data, incorrect serialization logic, or unhandled record types. The implemented exception handler needs to return a `FAIL` or `CONTINUE` depending on the record and the exception thrown. Returning `FAIL` will signal that Streams should shut down and `CONTINUE` will signal that Streams should ignore the issue and continue processing. The following library built-in exception handlers are available:
 > 
->   * [LogAndContinueExceptionHandler](/static/27/javadoc/org/apache/kafka/streams/errors/LogAndContinueExceptionHandler.html): This handler logs the deserialization exception and then signals the processing pipeline to continue processing more records. This log-and-skip strategy allows Kafka Streams to make progress instead of failing if there are records that fail to deserialize.
->   * [LogAndFailExceptionHandler](/static/27/javadoc/org/apache/kafka/streams/errors/LogAndFailExceptionHandler.html). This handler logs the deserialization exception and then signals the processing pipeline to stop processing more records.
+>   * [LogAndContinueExceptionHandler](/27/javadoc/org/apache/kafka/streams/errors/LogAndContinueExceptionHandler.html): This handler logs the deserialization exception and then signals the processing pipeline to continue processing more records. This log-and-skip strategy allows Kafka Streams to make progress instead of failing if there are records that fail to deserialize.
+>   * [LogAndFailExceptionHandler](/27/javadoc/org/apache/kafka/streams/errors/LogAndFailExceptionHandler.html). This handler logs the deserialization exception and then signals the processing pipeline to stop processing more records.
 > 
 
 > 
@@ -191,7 +191,7 @@ windowstore.changelog.additional.retention.ms | Low | Added to a windows maintai
 
 ## default.production.exception.handler
 
-> The default production exception handler allows you to manage exceptions triggered when trying to interact with a broker such as attempting to produce a record that is too large. By default, Kafka provides and uses the [DefaultProductionExceptionHandler](/static/27/javadoc/org/apache/kafka/streams/errors/DefaultProductionExceptionHandler.html) that always fails when these exceptions occur.
+> The default production exception handler allows you to manage exceptions triggered when trying to interact with a broker such as attempting to produce a record that is too large. By default, Kafka provides and uses the [DefaultProductionExceptionHandler](/27/javadoc/org/apache/kafka/streams/errors/DefaultProductionExceptionHandler.html) that always fails when these exceptions occur.
 > 
 > Each exception handler can return a `FAIL` or `CONTINUE` depending on the record and the exception thrown. Returning `FAIL` will signal that Streams should shut down and `CONTINUE` will signal that Streams should ignore the issue and continue processing. If you want to provide an exception handler that always ignores records that are too large, you could implement something like the following:
 >     
@@ -224,9 +224,9 @@ windowstore.changelog.additional.retention.ms | Low | Added to a windows maintai
 
 ## default.timestamp.extractor
 
-> A timestamp extractor pulls a timestamp from an instance of [ConsumerRecord](/static/27/javadoc/org/apache/kafka/clients/consumer/ConsumerRecord.html). Timestamps are used to control the progress of streams.
+> A timestamp extractor pulls a timestamp from an instance of [ConsumerRecord](/27/javadoc/org/apache/kafka/clients/consumer/ConsumerRecord.html). Timestamps are used to control the progress of streams.
 > 
-> The default extractor is [FailOnInvalidTimestamp](/static/27/javadoc/org/apache/kafka/streams/processor/FailOnInvalidTimestamp.html). This extractor retrieves built-in timestamps that are automatically embedded into Kafka messages by the Kafka producer client since [Kafka version 0.10](https://cwiki.apache.org/confluence/display/KAFKA/KIP-32+-+Add+timestamps+to+Kafka+message). Depending on the setting of Kafka's server-side `log.message.timestamp.type` broker and `message.timestamp.type` topic parameters, this extractor provides you with:
+> The default extractor is [FailOnInvalidTimestamp](/27/javadoc/org/apache/kafka/streams/processor/FailOnInvalidTimestamp.html). This extractor retrieves built-in timestamps that are automatically embedded into Kafka messages by the Kafka producer client since [Kafka version 0.10](https://cwiki.apache.org/confluence/display/KAFKA/KIP-32+-+Add+timestamps+to+Kafka+message). Depending on the setting of Kafka's server-side `log.message.timestamp.type` broker and `message.timestamp.type` topic parameters, this extractor provides you with:
 > 
 >   * **event-time** processing semantics if `log.message.timestamp.type` is set to `CreateTime` aka "producer time" (which is the default). This represents the time when a Kafka producer sent the original message. If you use Kafka's official producer client, the timestamp represents milliseconds since the epoch.
 >   * **ingestion-time** processing semantics if `log.message.timestamp.type` is set to `LogAppendTime` aka "broker time". This represents the time when the Kafka broker received the original message, in milliseconds since the epoch.
@@ -237,12 +237,12 @@ windowstore.changelog.additional.retention.ms | Low | Added to a windows maintai
 > 
 > If you have data with invalid timestamps and want to process it, then there are two alternative extractors available. Both work on built-in timestamps, but handle invalid timestamps differently.
 > 
->   * [LogAndSkipOnInvalidTimestamp](/static/27/javadoc/org/apache/kafka/streams/processor/LogAndSkipOnInvalidTimestamp.html): This extractor logs a warn message and returns the invalid timestamp to Kafka Streams, which will not process but silently drop the record. This log-and-skip strategy allows Kafka Streams to make progress instead of failing if there are records with an invalid built-in timestamp in your input data.
->   * [UsePartitionTimeOnInvalidTimestamp](/static/27/javadoc/org/apache/kafka/streams/processor/UsePartitionTimeOnInvalidTimestamp.html). This extractor returns the record's built-in timestamp if it is valid (i.e. not negative). If the record does not have a valid built-in timestamps, the extractor returns the previously extracted valid timestamp from a record of the same topic partition as the current record as a timestamp estimation. In case that no timestamp can be estimated, it throws an exception.
+>   * [LogAndSkipOnInvalidTimestamp](/27/javadoc/org/apache/kafka/streams/processor/LogAndSkipOnInvalidTimestamp.html): This extractor logs a warn message and returns the invalid timestamp to Kafka Streams, which will not process but silently drop the record. This log-and-skip strategy allows Kafka Streams to make progress instead of failing if there are records with an invalid built-in timestamp in your input data.
+>   * [UsePartitionTimeOnInvalidTimestamp](/27/javadoc/org/apache/kafka/streams/processor/UsePartitionTimeOnInvalidTimestamp.html). This extractor returns the record's built-in timestamp if it is valid (i.e. not negative). If the record does not have a valid built-in timestamps, the extractor returns the previously extracted valid timestamp from a record of the same topic partition as the current record as a timestamp estimation. In case that no timestamp can be estimated, it throws an exception.
 > 
 
 > 
-> Another built-in extractor is [WallclockTimestampExtractor](/static/27/javadoc/org/apache/kafka/streams/processor/WallclockTimestampExtractor.html). This extractor does not actually "extract" a timestamp from the consumed record but rather returns the current time in milliseconds from the system clock (think: `System.currentTimeMillis()`), which effectively means Streams will operate on the basis of the so-called **processing-time** of events.
+> Another built-in extractor is [WallclockTimestampExtractor](/27/javadoc/org/apache/kafka/streams/processor/WallclockTimestampExtractor.html). This extractor does not actually "extract" a timestamp from the consumed record but rather returns the current time in milliseconds from the system clock (think: `System.currentTimeMillis()`), which effectively means Streams will operate on the basis of the so-called **processing-time** of events.
 > 
 > You can also provide your own timestamp extractors, for instance to retrieve timestamps embedded in the payload of messages. If you cannot extract a valid timestamp, you can either throw an exception, return a negative timestamp, or estimate a timestamp. Returning a negative timestamp will result in data loss - the corresponding record will not be processed but silently dropped. If you want to estimate a new timestamp, you can use the value provided via `previousTimestamp` (i.e., a Kafka Streams timestamp estimation). Here is an example of a custom `TimestampExtractor` implementation:
 >     
@@ -352,7 +352,7 @@ If you enable n standby tasks, you need to provision n+1 `KafkaStreams` instance
 
 ## partition.grouper
 
-> **[DEPRECATED]** A partition grouper creates a list of stream tasks from the partitions of source topics, where each created task is assigned with a group of source topic partitions. The default implementation provided by Kafka Streams is [DefaultPartitionGrouper](/static/27/javadoc/org/apache/kafka/streams/processor/DefaultPartitionGrouper.html). It assigns each task with one partition for each of the source topic partitions. The generated number of tasks equals the largest number of partitions among the input topics. Usually an application does not need to customize the partition grouper. 
+> **[DEPRECATED]** A partition grouper creates a list of stream tasks from the partitions of source topics, where each created task is assigned with a group of source topic partitions. The default implementation provided by Kafka Streams is [DefaultPartitionGrouper](/27/javadoc/org/apache/kafka/streams/processor/DefaultPartitionGrouper.html). It assigns each task with one partition for each of the source topic partitions. The generated number of tasks equals the largest number of partitions among the input topics. Usually an application does not need to customize the partition grouper. 
 
 ## probing.rebalance.interval.ms
 
@@ -371,7 +371,7 @@ If you enable n standby tasks, you need to provision n+1 `KafkaStreams` instance
 
 ## rocksdb.config.setter
 
-> The RocksDB configuration. Kafka Streams uses RocksDB as the default storage engine for persistent stores. To change the default configuration for RocksDB, you can implement `RocksDBConfigSetter` and provide your custom class via [rocksdb.config.setter](/static/27/javadoc/org/apache/kafka/streams/state/RocksDBConfigSetter.html).
+> The RocksDB configuration. Kafka Streams uses RocksDB as the default storage engine for persistent stores. To change the default configuration for RocksDB, you can implement `RocksDBConfigSetter` and provide your custom class via [rocksdb.config.setter](/27/javadoc/org/apache/kafka/streams/state/RocksDBConfigSetter.html).
 > 
 > Here is an example that adjusts the memory size consumed by RocksDB.
 >     
@@ -432,9 +432,9 @@ Note that as of 2.3, you need to do two things to enable optimizations. In addit
  
  ### Kafka consumers, producer and admin client configuration parameters
  
- You can specify parameters for the Kafka [consumers](/static/27/javadoc/org/apache/kafka/clients/consumer/package-summary.html), [producers](/static/27/javadoc/org/apache/kafka/clients/producer/package-summary.html), and [admin client](/static/27/javadoc/org/apache/kafka/kafka/clients/admin/package-summary.html) that are used internally. The consumer, producer and admin client settings are defined by specifying parameters in a `StreamsConfig` instance.
+ You can specify parameters for the Kafka [consumers](/27/javadoc/org/apache/kafka/clients/consumer/package-summary.html), [producers](/27/javadoc/org/apache/kafka/clients/producer/package-summary.html), and [admin client](/27/javadoc/org/apache/kafka/kafka/clients/admin/package-summary.html) that are used internally. The consumer, producer and admin client settings are defined by specifying parameters in a `StreamsConfig` instance.
  
- In this example, the Kafka [consumer session timeout](/static/27/javadoc/org/apache/kafka/clients/consumer/ConsumerConfig.html#SESSION_TIMEOUT_MS_CONFIG) is configured to be 60000 milliseconds in the Streams settings:
+ In this example, the Kafka [consumer session timeout](/27/javadoc/org/apache/kafka/clients/consumer/ConsumerConfig.html#SESSION_TIMEOUT_MS_CONFIG) is configured to be 60000 milliseconds in the Streams settings:
      
      
      Properties streamsSettings = new Properties();

@@ -91,7 +91,7 @@ Parameters can be combined as needed. For example, if you want to restart an app
 For a complete application reset, you must delete the application's local state directory on any machines where the application instance was run. You must do this before restarting an application instance on the same machine. You can use either of these methods:
 
   * The API method `KafkaStreams#cleanUp()` in your application code.
-  * Manually delete the corresponding local state directory (default location: `/tmp/kafka-streams/<application.id>`). For more information, see [Streams](/static../../../javadoc/org/apache/kafka/streams/StreamsConfig.html#STATE_DIR_CONFIG) javadocs.
+  * Manually delete the corresponding local state directory (default location: `/tmp/kafka-streams/<application.id>`). For more information, see [Streams](/../../../javadoc/org/apache/kafka/streams/StreamsConfig.html#STATE_DIR_CONFIG) javadocs.
 
 
 

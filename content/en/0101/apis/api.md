@@ -20,7 +20,7 @@ Kafka exposes all its functionality over a language independent protocol which h
 
 The Producer API allows applications to send streams of data to topics in the Kafka cluster. 
 
-Examples showing how to use the producer are given in the [javadocs](/static/0101/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html "Kafka 0.10.1 Javadoc"). 
+Examples showing how to use the producer are given in the [javadocs](/0101/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html "Kafka 0.10.1 Javadoc"). 
 
 To use the producer, you can use the following maven dependency: 
     
@@ -36,7 +36,7 @@ To use the producer, you can use the following maven dependency:
 
 The Consumer API allows applications to read streams of data from topics in the Kafka cluster. 
 
-Examples showing how to use the consumer are given in the [javadocs](/static/0101/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html "Kafka 0.10.1 Javadoc"). 
+Examples showing how to use the consumer are given in the [javadocs](/0101/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html "Kafka 0.10.1 Javadoc"). 
 
 To use the consumer, you can use the following maven dependency: 
     
@@ -52,7 +52,7 @@ To use the consumer, you can use the following maven dependency:
 
 The Streams API allows transforming streams of data from input topics to output topics. 
 
-Examples showing how to use this library are given in the [javadocs](/static/0101/javadoc/index.html?org/apache/kafka/streams/KafkaStreams.html "Kafka 0.10.1 Javadoc")
+Examples showing how to use this library are given in the [javadocs](/0101/javadoc/index.html?org/apache/kafka/streams/KafkaStreams.html "Kafka 0.10.1 Javadoc")
 
 Additional documentation on using the Streams API is available [here](/documentation.html#streams). 
 
@@ -72,7 +72,7 @@ The Connect API allows implementing connectors that continually pull from some s
 
 Many users of Connect won't need to use this API directly, though, they can use pre-built connectors without needing to write any code. Additional information on using Connect is available [here](/documentation.html#connect). 
 
-Those who want to implement custom connectors can see the [javadoc](/static/0101/javadoc/index.html?org/apache/kafka/connect "Kafka 0.10.1 Javadoc"). 
+Those who want to implement custom connectors can see the [javadoc](/0101/javadoc/index.html?org/apache/kafka/connect "Kafka 0.10.1 Javadoc"). 
 
 # Legacy APIs
 
