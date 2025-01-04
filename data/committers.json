@@ -389,5 +389,21 @@
         "title": "Committer",
         "linkedIn": "https://www.linkedin.com/in/kamal-chandraprakash-43013a93",
         "github": "https://github.com/kamalcph"
+    },
+    {
+        "image": "/images/schofielaj.jpg",
+        "name": "Andrew Schofield",
+        "title": "Committer",
+        "linkedIn": "https://www.linkedin.com/in/andrewjschofield",
+        "github": "https://github.com/AndrewJSchofield"
+    },
+    {
+        "image": "/images/jeffkbkim.jpg",
+        "name": "Jeff Kim",
+        "title": "Committer",
+        "linkedIn": "https://www.linkedin.com/in/jeffkbkim",
+        "github": "https://github.com/jeffkbkim"
     }
+
+
 ]
