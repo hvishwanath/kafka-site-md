@@ -89,7 +89,7 @@ menu:
   main:
     # Point this to the latest documentation version.
     - name: "Documentation"
-      url: "/3.9/"
+      url: "/39/"
       weight: 20
     # Add a top level menu pointing to downloads page
     - name: "Download Kafka"
@@ -129,18 +129,100 @@ params:
   # current doc set.
   version: 3.9
   versions:
+    - version: 3.9
+      url: /39/
     - version: 3.8
-      url: /3.8/
+      url: /38/
       archived_version: true
     - version: 3.7
-      url: /3.7/
+      url: /37/
+      archived_version: true
     - version: 3.6  
-      url: /3.6/
+      url: /36/
+      archived_version: true
+    - version: 3.5
+      url: /35/
+      archived_version: true
+    - version: 3.4
+      url: /34/
+      archived_version: true
+    - version: 3.3  
+      url: /33/
+      archived_version: true
+    - version: 3.2
+      url: /32/
+      archived_version: true
+    - version: 3.1
+      url: /31/
+      archived_version: true
+    - version: 3.0  
+      url: /30/
+      archived_version: true
+    - version: 2.8
+      url: /28/
+      archived_version: true
+    - version: 2.7
+      url: /27/
+      archived_version: true
+    - version: 2.6  
+      url: /26/
+      archived_version: true
+    - version: 2.5
+      url: /25/
+      archived_version: true
+    - version: 2.4
+      url: /24/
+      archived_version: true
+    - version: 2.3  
+      url: /23/
+      archived_version: true
+    - version: 2.2
+      url: /22/
+      archived_version: true
+    - version: 2.1
+      url: /21/
+      archived_version: true
+    - version: 2.0  
+      url: /20/
+      archived_version: true
+    - version: 1.1
+      url: /11/
+      archived_version: true
+    - version: 1.0
+      url: /10/
+      archived_version: true
+    - version: 0.11.0  
+      url: /0110/
+      archived_version: true
+    - version: 0.10.2  
+      url: /0102/
+      archived_version: true
+    - version: 0.10.1  
+      url: /0101/
+      archived_version: true
+    - version: 0.10.0  
+      url: /0100/
+      archived_version: true
+    - version: 0.9.0
+      url: /090/
+      archived_version: true
+    - version: 0.8.2  
+      url: /082/
+      archived_version: true
+    - version: 0.8.1
+      url: /081/
+      archived_version: true
+    - version: 0.8.0  
+      url: /080/
+      archived_version: true
+    - version: 0.7
+      url: /07/
+      archived_version: true
 
 
   # A link to latest version of the docs. Used in the "version-banner" partial to
   # point people to the main doc site.
-  url_latest_version: /3.9/
+  url_latest_version: /39/
 
   # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
   github_repo: https://github.com/hvishwanath/kafka-site-md
