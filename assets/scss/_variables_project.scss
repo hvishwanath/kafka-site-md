@@ -3,6 +3,13 @@
 Add styles or override variables from the theme here.
 
 */
+
+$primary: #ffffff;
+
+.td-search__input:not(:focus) {
+  background: #736e6e1d;
+}
+
 // Layout
 .l-container--padded {
     padding-top: 2rem;

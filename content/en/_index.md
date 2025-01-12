@@ -1,7 +1,7 @@
 ---
 title: Apache Kafka
 ---
-{{% blocks/cover image_anchor="top" height="full" color="dark" %}}
+{{% blocks/cover image_anchor="top" height="full" color="primary" %}}
 {{< figure src="/logos/kafka-logo-tall.png" >}}
 
 <a class="btn btn-lg btn-primary me-3 mb-4" href="/39/">
@@ -11,7 +11,7 @@ title: Apache Kafka
   Download <i class="fa-solid fa-download ms-2 "></i>
 </a>
 <p class="lead mt-5"><i>More than 80% of all Fortune 100 companies trust, and use Apache Kafka.</i></p>
-{{< blocks/link-down color="info" >}}
+{{< blocks/link-down color="black" >}}
 
 {{% /blocks/cover %}}
 
@@ -22,7 +22,7 @@ title: Apache Kafka
 Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications. 
 {{% /blocks/lead %}}
 
-{{< blocks/section color="light" type="row" url="https://github.com/" >}}
+{{< blocks/section color="primary" type="row" url="https://github.com/" >}}
 {{% blocks/feature icon="fa-solid fa-industry" title="Manufacturing" %}}
 **10 OUT OF 10**
 {{% /blocks/feature %}}
@@ -34,7 +34,7 @@ Apache Kafka is an open-source distributed event streaming platform used by thou
 {{% /blocks/feature %}}
 {{< /blocks/section >}}
 
-{{< blocks/section color="light" type="row" >}}
+{{< blocks/section color="primary" type="row" >}}
 {{% blocks/feature icon="fa-solid fa-tower-cell" title="Telecom" %}}
 **8 OUT OF 10**
 {{% /blocks/feature %}}
