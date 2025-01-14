@@ -1,13 +1,10 @@
-version: "3.8"
+version: '3.8'
 
 services:
-
-  site:
-    image: docsy/docsy-example
+  web:
     build:
       context: .
-    command: server
+      dockerfile: Dockerfile
+    platform: linux/amd64,linux/arm64
     ports:
-      - "1313:1313"
-    volumes:
-      - .:/src
+      - "80:80"
