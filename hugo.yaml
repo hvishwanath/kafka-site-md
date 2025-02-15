@@ -219,7 +219,6 @@ params:
       url: /07/
       archived_version: true
 
-
   # A link to latest version of the docs. Used in the "version-banner" partial to
   # point people to the main doc site.
   url_latest_version: /39/
@@ -310,7 +309,16 @@ params:
         icon: fa fa-envelope
         desc: Developer mailing list
 
-  
+  search:
+    indexing_directories:
+      - "39"
+      - "blog"
+      - "community"
+      - "testimonials"
+    exclude_sections:
+      - "internal"
+    min_word_length: 3
+
 module:
   # Uncomment the next line to build and serve using local docsy clone declared in the named Hugo workspace:
   # workspace: docsy.work
