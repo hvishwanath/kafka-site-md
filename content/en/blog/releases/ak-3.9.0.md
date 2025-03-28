@@ -5,12 +5,11 @@ linkTitle: AK 3.9.0
 author: Colin P. McCabe
 ---
 
-##  Apache Kafka 3.9.0 Release Announcement
 
 
 We are proud to announce the release of Apache Kafka 3.9.0. This is a major release, the final one in the 3.x line. This will also be the final major release to feature the deprecated Apache ZooKeeper mode. Starting in 4.0 and later, Kafka will always run without ZooKeeper.
 
-### Dynamic KRaft Quorums
+## Dynamic KRaft Quorums
 
 When in KRaft mode, Kafka relies on a Raft quorum of controller processes to store its metadata log. Previously, controller quorums were specified by a static configuration that needed to be set on all brokers and controllers. This made changing the hostnames of controllers, or adding or removing them, very difficult to do without downtime.
 
@@ -20,7 +19,7 @@ This feature has been eagerly awaited by the community, and we are excited to de
 
 For more information about using the new dynamic quorums feature, see [the KIP-853 documentation.](https://kafka.apache.org/39/documentation.html#kraft_reconfig)
 
-### Improved ZooKeeper Migration
+## Improved ZooKeeper Migration
 
 Users that are using ZooKeeper mode today need to go through a process called ZooKeeper migration before they will be able to use KRaft mode. The migration process involves running a series of commands to copy the metadata stored in ZooKeeper into a KRaft quorum.
 
@@ -50,7 +49,7 @@ As an example, if you wanted to migrate from Kafka 1.0 to Kafka 4.0, you might d
 
 These multi-step migrations should be quite rare. Running such an old Kafka version raises security concerns, after all. However, I wanted to mention it for completeness.
 
-### Tiered Storage
+## Tiered Storage
 
 Tiered storage is a feature that has been under development since Kafka 3.6. It allows Kafka to seamlessly offload data to pluggable external storage systems, such as cloud object stores. (See [KIP-405](https://cwiki.apache.org/confluence/display/KAFKA/KIP-405%3A+Kafka+Tiered+Storage) for more details.)
 
@@ -67,7 +66,7 @@ The kafka-dump-log.sh tool gained the ability to examine tiered storage records.
 
 
 
-### Kafka Streams
+## Kafka Streams
 
 There are several Kafka Streams improvements in Apache Kafka 3.9.
 
@@ -78,7 +77,7 @@ Improve exception handling in Kafka streams.
 
 
 
-### Kafka Connect
+## Kafka Connect
 
 Kafka Connect received several improvements in 3.9 as well.
 
@@ -91,8 +90,10 @@ Add a REST endpoint that can be used to determine if Kafka Connect workers are h
 
 
 
-### Conclusion
+## Conclusion
 
 I hope that this post has given you a sense of all the exciting things that are going on in Kafka 3.9. For more details, take a look at the [release notes](https://archive.apache.org/dist/kafka/3.9.0/RELEASE_NOTES.html), or simply [download](https://kafka.apache.org/downloads) the release for yourself. 
 
 This was a community effort, so thank you to everyone who contributed to this release: A. Sophie Blee-Goldman, abhi-ksolves, Abhijeet Kumar, Abhinav Dixit, Adrian Preston, Alieh Saeedi, Alyssa Huang, Anatoly Popov, Andras Katona, Andrew Schofield, Andy Wilkinson, Anna Sophie Blee-Goldman, Antoine Pourchet, Apoorv Mittal, Arnav Dadarya, Arnout Engelen, Arpit Goyal, Arun Mathew, Ayoub Omari, bachmanity1, Bill Bejeck, brenden20, Bruno Cadonna, Chia Chuan Yu, Chia-Ping Tsai, ChickenchickenLove, Chirag Wadhwa, Chris Egerton, Christo Lolov, Ming-Yen Chung, Colin P. McCabe, Cy, David Arthur, David Jacot, Demonic, dengziming, Dimitar Dimitrov, Dmitry Werner, Dongnuo Lyu, dujian0068, Edoardo Comar, Farbod Ahmadian, Federico Valeri, Fiore Mario Vitale, Florin Akermann, Francois Visconte, Ganesh Sadanala, Gantigmaa Selenge, Gaurav Narula, gongxuanzhang, Greg Harris, Gyeongwon Do, Harry Fallows, Hongten, Ian McDonald, Igor Soarez, Ismael Juma, Ivan Yurchenko, Jakub Scholz, Jason Gustafson, Jeff Kim, Jim Galasyn, Jinyong Choi, Johnny Hsu, José Armando García Sancio, Josep Prat, Jun Rao, Justine Olshan, Kamal Chandraprakash, Ken Huang, Kevin Wu, Kirk True, Kondrat Bertalan, Krishna Agarwal, KrishVora01, Kuan-Po (Cooper) Tseng, Lee Dongjin, Lianet Magrans, Logan Zhu, Loïc GREFFIER, Lucas Brutschy, Luke Chen, Maciej Moscicki, Manikumar Reddy, Mason Chen, Matthias J. Sax, Max Riedel, Mickael Maison, Murali Basani, Nancy, Nicolas Guyomar, Nikolay, Okada Haruki, Omnia Ibrahim, PaulRMellor, Pavel Pozdeev, Phuc-Hong-Tran, Piotr Rzysko, PoAn Yang, Ritika Reddy, Rohan, Ron Dagostino, Sanskar Jhajharia, Satish Duggana, Sean Quah, Sebastien Viale, Shawn Hsu, ShivsundarR, Sushant Mahajan, TaiJuWu, TengYao Chi, TingIāu "Ting" Ki, vamossagar12, Vedarth Sharma, Vikas Balani, Vikas Singh, Viktor Somogyi-Vass, Vinay Agarwal, Vincent Rose, Volk, Wang Xiaoqing, Xiduo You, xijiu, Xuan-Zhang Gong, Yash Mayya, Zhengke Zhou. 
+
+

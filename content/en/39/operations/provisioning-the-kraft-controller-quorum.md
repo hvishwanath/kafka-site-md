@@ -40,6 +40,11 @@ Here is a sample config for a KRaft controller that is ready for migration:
     
     # Other configs ...
 
-The new standalone controller in the example configuration above should be formatted using the `kafka-storage format --standalone`command.
+Follow these steps to format and start a new standalone controller: 
+    
+    
+    # Save the previously retrieved cluster ID from ZooKeeper in a variable called zk-cluster-id
+    $ bin/kafka-storage.sh format --standalone -t <zk-cluster-id> -c config/kraft/controller.properties
+    $ bin/kafka-server-start.sh config/kraft/controller.properties
 
 _Note: The KRaft cluster`node.id` values must be different from any existing ZK broker `broker.id`. In KRaft-mode, the brokers and controllers share the same Node ID namespace._

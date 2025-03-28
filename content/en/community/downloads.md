@@ -10,6 +10,19 @@ The project goal is to have 3 releases a year, which means a release every 4 mon
 
 ## Supported releases
 
+### 4.0.0
+
+  * Released March 18, 2025 
+  * [Release Notes](https://dlcdn.apache.org/kafka/4.0.0/RELEASE_NOTES.html)
+  * Docker image: [apache/kafka:4.0.0](https://hub.docker.com/layers/apache/kafka/4.0.0/images/sha256-01b9a4030e54c6068e66eb3ba4cb82c0d89238629ef1c30d79b86036bf89b1b7). 
+  * Docker Native image: [apache/kafka-native:4.0.0](https://hub.docker.com/layers/apache/kafka-native/4.0.0/images/sha256-94061e3c94f33ae18011e0f4e96c03a6ec4def97bbbad41ff68473e0a04c4ad8). 
+  * Source download: [kafka-4.0.0-src.tgz](https://dlcdn.apache.org/kafka/4.0.0/kafka-4.0.0-src.tgz) ([asc](https://downloads.apache.org/kafka/4.0.0/kafka-4.0.0-src.tgz.asc), [sha512](https://downloads.apache.org/kafka/4.0.0/kafka-4.0.0-src.tgz.sha512)) 
+  * Binary download: [kafka_2.13-4.0.0.tgz](https://dlcdn.apache.org/kafka/4.0.0/kafka_2.13-4.0.0.tgz) ([asc](https://downloads.apache.org/kafka/4.0.0/kafka_2.13-4.0.0.tgz.asc), [sha512](https://downloads.apache.org/kafka/4.0.0/kafka_2.13-4.0.0.tgz.sha512)) 
+
+
+Kafka 4.0.0 includes a significant number of new features and fixes. For more information, please read our [blog post](https://kafka.apache.org/blog#apache_kafka_400_release_announcement), the detailed [Upgrade Notes](https://kafka.apache.org/documentation#upgrade_4_0_0) and and the [Release Notes](https://dlcdn.apache.org/kafka/4.0.0/RELEASE_NOTES.html). 
+
+
 ### 3.9.0
 
   * Released November 6, 2024 

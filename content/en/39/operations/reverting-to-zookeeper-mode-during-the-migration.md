@@ -28,7 +28,7 @@ Provisioning the KRaft controller quorum |
 Enter Migration Mode on the brokers | 
 
   * Deprovision the KRaft controller quorum. 
-  * Using `zookeeper-shell.sh`, run `rmr /controller` so that one of the brokers can become the new old-style controller. Additionally, run `get /migration` followed by `rmr /migration` to clear the migration state from ZooKeeper. This will allow you to re-attempt the migration in the future. The data read from "/migration" can be useful for debugging. 
+  * Using `zookeeper-shell.sh`, run `delete /controller` so that one of the brokers can become the new old-style controller. Additionally, run `get /migration` followed by `delete /migration` to clear the migration state from ZooKeeper. This will allow you to re-attempt the migration in the future. The data read from "/migration" can be useful for debugging. 
   * On each broker, remove the `zookeeper.metadata.migration.enable`, `controller.listener.names`, and `controller.quorum.bootstrap.servers` configurations, and replace `node.id` with `broker.id`. Then perform a rolling restart of all brokers. 
   * Then you are done. 
 
@@ -37,7 +37,7 @@ Migrating brokers to KRaft |
 
   * On each broker, remove the `process.roles` configuration, replace the `node.id` with `broker.id` and restore the `zookeeper.connect` configuration to its previous value. If your cluster requires other ZooKeeper configurations for brokers, such as `zookeeper.ssl.protocol`, re-add those configurations as well. Then perform a rolling restart of all brokers. 
   * Deprovision the KRaft controller quorum. 
-  * Using `zookeeper-shell.sh`, run `rmr /controller` so that one of the brokers can become the new old-style controller. 
+  * Using `zookeeper-shell.sh`, run `delete /controller` so that one of the brokers can become the new old-style controller. 
   * On each broker, remove the `zookeeper.metadata.migration.enable`, `controller.listener.names`, and `controller.quorum.bootstrap.servers` configurations. Then perform a second rolling restart of all brokers. 
   * Then you are done. 
 

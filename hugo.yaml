@@ -89,7 +89,7 @@ menu:
   main:
     # Point this to the latest documentation version.
     - name: "Documentation"
-      url: "/39/"
+      url: "/40/"
       weight: 20
     # Add a top level menu pointing to downloads page
     - name: "Download Kafka"
@@ -127,10 +127,13 @@ params:
   # The version number for the version of the docs represented in this doc set.
   # Used in the "version-banner" partial to display a version number for the
   # current doc set.
-  version: 3.9
+  version: 4.0
   versions:
+    - version: "4.0"
+      url: /40/
     - version: "3.9"
       url: /39/
+      archived_version: true
     - version: "3.8"
       url: /38/
       archived_version: true
@@ -311,7 +314,7 @@ params:
 
   search:
     indexing_directories:
-      - "39"
+      - "40"
       - "blog"
       - "community"
       - "testimonials"

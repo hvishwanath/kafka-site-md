@@ -24,7 +24,7 @@ We are going to use a Kafka Streams Maven Archetype for creating a Streams proje
     -DarchetypeArtifactId=streams-quickstart-java \
     -DarchetypeVersion=3.8.1 \
     -DgroupId=streams.examples \
-    -DartifactId=streams-quickstart\
+    -DartifactId=streams-quickstart \
     -Dversion=0.1 \
     -Dpackage=myapps
 
