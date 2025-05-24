@@ -29,7 +29,7 @@ To use the producer, you can use the following maven dependency:
     <dependency>
     	<groupId>org.apache.kafka</groupId>
     	<artifactId>kafka-clients</artifactId>
-    	<version>3.9.0</version>
+    	<version>3.9.1</version>
     </dependency>
 
 # Consumer API
@@ -44,7 +44,7 @@ To use the consumer, you can use the following maven dependency:
     <dependency>
     	<groupId>org.apache.kafka</groupId>
     	<artifactId>kafka-clients</artifactId>
-    	<version>3.9.0</version>
+    	<version>3.9.1</version>
     </dependency>
 
 # Streams API
@@ -61,7 +61,7 @@ To use Kafka Streams you can use the following maven dependency:
     <dependency>
     	<groupId>org.apache.kafka</groupId>
     	<artifactId>kafka-streams</artifactId>
-    	<version>3.9.0</version>
+    	<version>3.9.1</version>
     </dependency>
 
 When using Scala you may optionally include the `kafka-streams-scala` library. Additional documentation on using the Kafka Streams DSL for Scala is available [in the developer guide](/39/streams/developer-guide/dsl-api.html#scala-dsl). 
@@ -72,7 +72,7 @@ To use Kafka Streams DSL for Scala for Scala 2.13 you can use the following mave
     <dependency>
     	<groupId>org.apache.kafka</groupId>
     	<artifactId>kafka-streams-scala_2.13</artifactId>
-    	<version>3.9.0</version>
+    	<version>3.9.1</version>
     </dependency>
 
 # Connect API
@@ -93,7 +93,7 @@ To use the Admin API, add the following Maven dependency:
     <dependency>
     	<groupId>org.apache.kafka</groupId>
     	<artifactId>kafka-clients</artifactId>
-    	<version>3.9.0</version>
+    	<version>3.9.1</version>
     </dependency>
 
 For more information about the Admin APIs, see the [javadoc](/39/javadoc/index.html?org/apache/kafka/clients/admin/Admin.html "Kafka 3.9 Javadoc"). 

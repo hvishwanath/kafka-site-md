@@ -116,8 +116,9 @@ If the data in the cluster metadata directory is lost either because of hardware
     
     
     $ bin/kafka-metadata-quorum.sh --bootstrap-server localhost:9092 describe --replication
-    NodeId  LogEndOffset    Lag     LastFetchTimestamp      LastCaughtUpTimestamp   Status
-    1       25806           0       1662500992757           1662500992757           Leader
+    NodeId	DirectoryId           	LogEndOffset	Lag	LastFetchTimestamp	LastCaughtUpTimestamp	Status
+    1     	dDo1k_pRSD-VmReEpu383g	966         	0  	1732367153528     	1732367153528        	Leader
+    2     	wQWaQMJYpcifUPMBGeRHqg	966         	0  	1732367153304     	1732367153304        	Observer
     ...     ...             ...     ...                     ...                     ...
 
 Check and wait until the `Lag` is small for a majority of the controllers. If the leader's end offset is not increasing, you can wait until the lag is 0 for a majority; otherwise, you can pick the latest leader end offset and wait until all replicas have reached it. Check and wait until the `LastFetchTimestamp` and `LastCaughtUpTimestamp` are close to each other for the majority of the controllers. At this point it is safer to format the controller's metadata log directory. This can be done by running the `kafka-storage.sh` command.

@@ -50,11 +50,11 @@ As the first step, we will start Kafka (unless you already have it started) and 
 
 ## Step 1: Download the code
 
-[Download](https://www.apache.org/dyn/closer.cgi?path=/kafka/3.9.0/kafka_2.13-3.9.0.tgz "Kafka downloads") the 3.9.0 release and un-tar it. Note that there are multiple downloadable Scala versions and we choose to use the recommended version (2.13) here: 
+[Download](https://www.apache.org/dyn/closer.cgi?path=/kafka/3.9.1/kafka_2.13-3.9.1.tgz "Kafka downloads") the 3.9.1 release and un-tar it. Note that there are multiple downloadable Scala versions and we choose to use the recommended version (2.13) here: 
     
     
-    $ tar -xzf kafka_2.13-3.9.0.tgz
-    $ cd kafka_2.13-3.9.0
+    $ tar -xzf kafka_2.13-3.9.1.tgz
+    $ cd kafka_2.13-3.9.1
 
 ## Step 2: Start the Kafka server
 

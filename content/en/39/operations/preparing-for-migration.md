@@ -10,7 +10,7 @@ type: docs
 
 # Preparing for migration
 
-Before beginning the migration, the Kafka brokers must be upgraded to software version 3.9.0 and have the "inter.broker.protocol.version" configuration set to "3.9". 
+Before beginning the migration, the Kafka brokers must be upgraded to software version 3.9.1 and have the "inter.broker.protocol.version" configuration set to "3.9". 
 
 It is recommended to enable TRACE level logging for the migration components while the migration is active. This can be done by adding the following log4j configuration to each KRaft controller's "log4j.properties" file. 
     

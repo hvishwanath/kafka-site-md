@@ -8,7 +8,7 @@ keywords:
 type: docs
 ---
 
-## Upgrading to 3.9.0 from any version 0.8.x through 3.8.x
+## Upgrading to 3.9.1 from any version 0.8.x through 3.8.x
 
 ### Upgrading ZooKeeper-based clusters
 
@@ -37,6 +37,13 @@ If you are upgrading from version 2.4.0 or above, and you have not overridden th
   1. Upgrade the brokers one at a time: shut down the broker, update the code, and restart it. Once you have done so, the brokers will be running the latest version and you can verify that the cluster's behavior and performance meets expectations. 
   2. Once the cluster's behavior and performance has been verified, bump the metadata.version by running ` bin/kafka-features.sh upgrade --metadata 3.9 `
   3. Note that cluster metadata downgrade is not supported in this software version. Every [MetadataVersion](https://github.com/apache/kafka/blob/trunk/server-common/src/main/java/org/apache/kafka/server/common/MetadataVersion.java) after 3.2.x has a boolean parameter that indicates if there are metadata changes (i.e. `IBP_3_3_IV3(7, "3.3", "IV3", true)` means this version has metadata changes). Given your current and target versions, a downgrade is only possible if there are no metadata changes in the versions between.
+
+
+
+### Notable changes in 3.9.1
+
+  * We have added a system property ("org.apache.kafka.sasl.oauthbearer.allowed.urls") to set the allowed URLs as SASL OAUTHBEARER token or jwks endpoints. By default all URLs are allowed. Users should explicitly set the desired allowed list if necessary. 
+  * Request logging for deprecated protocol api versions was changed from `DEBUG` to `INFO` level. This makes it possible to enable request logging for deprecated requests without enabling it for regular requests (which are still logged at `DEBUG` level). The relevant logger is `log4j.logger.kafka.request.logger` and it can be adjusted statically via the `log4j.properties` file or dynamically via `kafka-configs.sh`. 
 
 
 
@@ -91,6 +98,36 @@ If you are upgrading from version 0.11.0.x or above, and you have not overridden
 
 
 ## Upgrading to 3.8.0 from any version 0.8.x through 3.7.x
+
+### Upgrading ZooKeeper-based clusters
+
+**If you are upgrading from a version prior to 2.1.x, please see the note in step 5 below about the change to the schema used to store consumer offsets. Once you have changed the inter.broker.protocol.version to the latest version, it will not be possible to downgrade to a version prior to 2.1.**
+
+**For a rolling upgrade:**
+
+  1. Update server.properties on all brokers and add the following properties. CURRENT_KAFKA_VERSION refers to the version you are upgrading from. CURRENT_MESSAGE_FORMAT_VERSION refers to the message format version currently in use. If you have previously overridden the message format version, you should keep its current value. Alternatively, if you are upgrading from a version prior to 0.11.0.x, then CURRENT_MESSAGE_FORMAT_VERSION should be set to match CURRENT_KAFKA_VERSION. 
+     * inter.broker.protocol.version=CURRENT_KAFKA_VERSION (e.g. `3.7`, `3.6`, etc.)
+     * log.message.format.version=CURRENT_MESSAGE_FORMAT_VERSION (See potential performance impact following the upgrade for the details on what this configuration does.)
+If you are upgrading from version 2.4.0 or above, and you have not overridden the message format, then you only need to override the inter-broker protocol version. However, before doing this, make sure ZooKeeper is upgraded to version 3.8.3 or higher. 
+     * inter.broker.protocol.version=CURRENT_KAFKA_VERSION (e.g. `3.7`, `3.6`, etc.)
+  2. Upgrade the brokers one at a time: shut down the broker, update the code, and restart it. Once you have done so, the brokers will be running the latest version and you can verify that the cluster's behavior and performance meets expectations. It is still possible to downgrade at this point if there are any problems. 
+  3. Once the cluster's behavior and performance has been verified, bump the protocol version by editing `inter.broker.protocol.version` and setting it to `3.8`. 
+  4. Restart the brokers one by one for the new protocol version to take effect. Once the brokers begin using the latest protocol version, it will no longer be possible to downgrade the cluster to an older version. 
+  5. If you have overridden the message format version as instructed above, then you need to do one more rolling restart to upgrade it to its latest version. Once all (or most) consumers have been upgraded to 0.11.0 or later, change log.message.format.version to 3.8 on each broker and restart them one by one. Note that the older Scala clients, which are no longer maintained, do not support the message format introduced in 0.11, so to avoid conversion costs (or to take advantage of exactly once semantics), the newer Java clients must be used. 
+
+
+
+### Upgrading KRaft-based clusters
+
+**If you are upgrading from a version prior to 3.3.0, please see the note in step 3 below. Once you have changed the metadata.version to the latest version, it will not be possible to downgrade to a version prior to 3.3-IV0.**
+
+**For a rolling upgrade:**
+
+  1. Upgrade the brokers one at a time: shut down the broker, update the code, and restart it. Once you have done so, the brokers will be running the latest version and you can verify that the cluster's behavior and performance meets expectations. 
+  2. Once the cluster's behavior and performance has been verified, bump the metadata.version by running ` bin/kafka-features.sh upgrade --metadata 3.8 `
+  3. Note that cluster metadata downgrade is not supported in this software version. Every [MetadataVersion](https://github.com/apache/kafka/blob/trunk/server-common/src/main/java/org/apache/kafka/server/common/MetadataVersion.java) after 3.2.x has a boolean parameter that indicates if there are metadata changes (i.e. `IBP_3_3_IV3(7, "3.3", "IV3", true)` means this version has metadata changes). Given your current and target versions, a downgrade is only possible if there are no metadata changes in the versions between.
+
+
 
 ### Notable changes in 3.8.0
 

@@ -267,6 +267,17 @@ Below is the configuration of MirrorMaker 2 heartbeat connector for checking con
 
 Kafka supports some configuration that can be enabled through Java system properties. System properties are usually set by passing the -D flag to the Java virtual machine in which Kafka components are running. Below are the supported system properties. 
 
+  * #### org.apache.kafka.sasl.oauthbearer.allowed.urls
+
+This system property is used to set the allowed URLs as SASL OAUTHBEARER token or jwks endpoints. This property accepts comma-separated list of URLs. By default all URLs are allowed. 
+
+If users want to only enable some URLs, users need to explicitly set the system property like below. 
+    
+        -Dorg.apache.kafka.sasl.oauthbearer.allowed.urls=https://www.example.com,file:///tmp/token
+
+Since:| 3.9.1  
+---|---  
+Default Value:| All URLs are allowed  
   * #### org.apache.kafka.disallowed.login.modules
 
 This system property is used to disable the problematic login modules usage in SASL JAAS configuration. This property accepts comma-separated list of loginModule names. By default **com.sun.security.auth.module.JndiLoginModule** loginModule is disabled. 

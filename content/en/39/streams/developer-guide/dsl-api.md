@@ -1875,7 +1875,7 @@ The library is cross-built with Scala 2.12 and 2.13. To reference the library co
     <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka-streams-scala_2.13</artifactId>
-      <version>3.9.0</version>
+      <version>3.9.1</version>
     </dependency>
 
 To use the library compiled against Scala 2.12 replace the `artifactId` with `kafka-streams-scala_2.12`.
@@ -1883,7 +1883,7 @@ To use the library compiled against Scala 2.12 replace the `artifactId` with `ka
 When using SBT then you can reference the correct library using the following:
     
     
-    libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "3.9.0"
+    libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "3.9.1"
 
 # Sample Usage
 

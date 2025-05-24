@@ -22,7 +22,7 @@ We are going to use a Kafka Streams Maven Archetype for creating a Streams proje
     $ mvn archetype:generate \
     -DarchetypeGroupId=org.apache.kafka \
     -DarchetypeArtifactId=streams-quickstart-java \
-    -DarchetypeVersion=3.9.0 \
+    -DarchetypeVersion=3.9.1 \
     -DgroupId=streams.examples \
     -DartifactId=streams-quickstart \
     -Dversion=0.1 \

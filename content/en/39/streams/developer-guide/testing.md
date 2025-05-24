@@ -26,7 +26,7 @@ To test a Kafka Streams application, Kafka provides a test-utils artifact that c
     <dependency>
         <groupId>org.apache.kafka</groupId>
         <artifactId>kafka-streams-test-utils</artifactId>
-        <version>3.9.0</version>
+        <version>3.9.1</version>
         <scope>test</scope>
     </dependency>
 

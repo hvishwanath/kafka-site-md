@@ -439,5 +439,21 @@
     "linkedIn": "https://www.linkedin.com/in/andrewjschofield/",
     "twitter": null,
     "github": "https://github.com/AndrewJSchofield"
+  },
+  {
+    "image": "/images/tengyaochi.jpg",
+    "name": "TengYao Chi",
+    "title": "Committer",
+    "linkedIn": "https://www.linkedin.com/in/tingi\u0101u-k\u00ec/",
+    "twitter": null,
+    "github": "https://github.com/frankvicky"
+  },
+  {
+    "image": "/images/apoorvmittal.jpg",
+    "name": "Apoorv Mittal",
+    "title": "Committer",
+    "linkedIn": "https://www.linkedin.com/in/apoorvmittal10/",
+    "twitter": null,
+    "github": "https://github.com/apoorvmittal10"
   }
 ]
