@@ -136,3 +136,138 @@ The following features are not yet supported for ZK to KRaft migrations:
 
 
 Please report issues with ZooKeeper to KRaft migration using the [project JIRA](https://issues.apache.org/jira/projects/KAFKA) and the "kraft" component. 
+
+### Terminology
+
+We use the term "migration" here to refer to the process of changing a Kafka cluster's metadata system from ZooKeeper to KRaft and migrating existing metadata. An "upgrade" refers to installing a newer version of Kafka. It is not recommended to upgrade the software at the same time as performing a metadata migration. 
+
+We also use the term "ZK mode" to refer to Kafka brokers which are using ZooKeeper as their metadata system. "KRaft mode" refers Kafka brokers which are using a KRaft controller quorum as their metadata system. 
+
+### Preparing for migration
+
+Before beginning the migration, the Kafka brokers must be upgraded to software version 3.5.0 and have the "inter.broker.protocol.version" configuration set to "3.5". See Upgrading to 3.5.0 for upgrade instructions. 
+
+It is recommended to enable TRACE level logging for the migration components while the migration is active. This can be done by adding the following log4j configuration to each KRaft controller's "log4j.properties" file. 
+    
+    
+    log4j.logger.org.apache.kafka.metadata.migration=TRACE
+
+It is generally useful to enable DEBUG logging on the KRaft controllers and the ZK brokers during the migration. 
+
+### Provisioning the KRaft controller quorum
+
+Two things are needed before the migration can begin. First, the brokers must be configured to support the migration and second, a KRaft controller quorum must be deployed. The KRaft controllers should be provisioned with the same cluster ID as the existing Kafka cluster. This can be found by examining one of the "meta.properties" files in the data directories of the brokers, or by running the following command. 
+    
+    
+    ./bin/zookeeper-shell.sh localhost:2181 get /cluster/id
+
+The KRaft controller quorum should also be provisioned with the latest `metadata.version`. This is done automatically when you format the node with the `kafka-storage.sh` tool. For further instructions on KRaft deployment, please refer to the above documentation. 
+
+In addition to the standard KRaft configuration, the KRaft controllers will need to enable support for the migration as well as provide ZooKeeper connection configuration. 
+
+Here is a sample config for a KRaft controller that is ready for migration: 
+    
+    
+    # Sample KRaft cluster controller.properties listening on 9093
+    process.roles=controller
+    node.id=3000
+    controller.quorum.voters=3000@localhost:9093
+    controller.listener.names=CONTROLLER
+    listeners=CONTROLLER://:9093
+    
+    # Enable the migration
+    zookeeper.metadata.migration.enable=true
+    
+    # ZooKeeper client configuration
+    zookeeper.connect=localhost:2181
+    
+    # Other configs ...
+
+_Note: The KRaft cluster`node.id` values must be different from any existing ZK broker `broker.id`. In KRaft-mode, the brokers and controllers share the same Node ID namespace._
+
+### Enabling the migration on the brokers
+
+Once the KRaft controller quorum has been started, the brokers will need to be reconfigured and restarted. Brokers may be restarted in a rolling fashion to avoid impacting cluster availability. Each broker requires the following configuration to communicate with the KRaft controllers and to enable the migration. 
+
+  * controller.quorum.voters
+  * controller.listener.names
+  * The controller.listener.name should also be added to listener.security.property.map
+  * zookeeper.metadata.migration.enable
+
+
+
+Here is a sample config for a broker that is ready for migration:
+    
+    
+    # Sample ZK broker server.properties listening on 9092
+    broker.id=0
+    listeners=PLAINTEXT://:9092
+    advertised.listeners=PLAINTEXT://localhost:9092
+    listener.security.protocol.map=PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
+    
+    # Set the IBP
+    inter.broker.protocol.version=3.5
+    
+    # Enable the migration
+    zookeeper.metadata.migration.enable=true
+    
+    # ZooKeeper client configuration
+    zookeeper.connect=localhost:2181
+    
+    # KRaft controller quorum configuration
+    controller.quorum.voters=3000@localhost:9093
+    controller.listener.names=CONTROLLER
+
+_Note: Once the final ZK broker has been restarted with the necessary configuration, the migration will automatically begin._ When the migration is complete, an INFO level log can be observed on the active controller: 
+    
+    
+    Completed migration of metadata from Zookeeper to KRaft
+
+### Migrating brokers to KRaft
+
+Once the KRaft controller completes the metadata migration, the brokers will still be running in ZK mode. While the KRaft controller is in migration mode, it will continue sending controller RPCs to the ZK mode brokers. This includes RPCs like UpdateMetadata and LeaderAndIsr. 
+
+To migrate the brokers to KRaft, they simply need to be reconfigured as KRaft brokers and restarted. Using the above broker configuration as an example, we would replace the `broker.id` with `node.id` and add `process.roles=broker`. It is important that the broker maintain the same Broker/Node ID when it is restarted. The zookeeper configurations should be removed at this point. 
+    
+    
+    # Sample KRaft broker server.properties listening on 9092
+    process.roles=broker
+    node.id=0
+    listeners=PLAINTEXT://:9092
+    advertised.listeners=PLAINTEXT://localhost:9092
+    listener.security.protocol.map=PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
+    
+    # Don't set the IBP, KRaft uses "metadata.version" feature flag
+    # inter.broker.protocol.version=3.5
+    
+    # Remove the migration enabled flag
+    # zookeeper.metadata.migration.enable=true
+    
+    # Remove ZooKeeper client configuration
+    # zookeeper.connect=localhost:2181
+    
+    # Keep the KRaft controller quorum configuration
+    controller.quorum.voters=3000@localhost:9093
+    controller.listener.names=CONTROLLER
+
+Each broker is restarted with a KRaft configuration until the entire cluster is running in KRaft mode. 
+
+### Finalizing the migration
+
+Once all brokers have been restarted in KRaft mode, the last step to finalize the migration is to take the KRaft controllers out of migration mode. This is done by removing the "zookeeper.metadata.migration.enable" property from each of their configs and restarting them one at a time. 
+    
+    
+    # Sample KRaft cluster controller.properties listening on 9093
+    process.roles=controller
+    node.id=3000
+    controller.quorum.voters=3000@localhost:9093
+    controller.listener.names=CONTROLLER
+    listeners=CONTROLLER://:9093
+    
+    # Disable the migration
+    # zookeeper.metadata.migration.enable=true
+    
+    # Remove ZooKeeper client configuration
+    # zookeeper.connect=localhost:2181
+    
+    # Other configs ...

@@ -1,6 +1,6 @@
 ---
-title: Monitoring 
-description: Monitoring 
+title: Monitoring
+description: Monitoring
 weight: 6
 tags: ['kafka', 'docs']
 aliases: 

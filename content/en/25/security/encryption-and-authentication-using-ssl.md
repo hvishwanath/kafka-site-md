@@ -1,6 +1,6 @@
 ---
-title: Encryption and Authentication using SSL 
-description: Encryption and Authentication using SSL 
+title: Encryption and Authentication using SSL
+description: Encryption and Authentication using SSL
 weight: 2
 tags: ['kafka', 'docs']
 aliases: 

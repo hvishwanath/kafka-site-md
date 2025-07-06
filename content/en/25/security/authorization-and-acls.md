@@ -1,6 +1,6 @@
 ---
-title: Authorization and ACLs 
-description: Authorization and ACLs 
+title: Authorization and ACLs
+description: Authorization and ACLs
 weight: 4
 tags: ['kafka', 'docs']
 aliases: 

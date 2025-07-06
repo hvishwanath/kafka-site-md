@@ -1,6 +1,6 @@
 ---
-title: ZooKeeper Encryption 
-description: ZooKeeper Encryption 
+title: ZooKeeper Encryption
+description: ZooKeeper Encryption
 weight: 7
 tags: ['kafka', 'docs']
 aliases: 

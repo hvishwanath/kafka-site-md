@@ -270,7 +270,7 @@
   {
     "image": "/images/jsancio.jpg",
     "name": "Jos\u00e9 Armando Garc\u00eda Sancio",
-    "title": "Committer",
+    "title": "Committer, and PMC member",
     "linkedIn": "https://www.linkedin.com/in/jsancio/",
     "twitter": null,
     "github": "https://github.com/jsancio/"
@@ -455,5 +455,13 @@
     "linkedIn": "https://www.linkedin.com/in/apoorvmittal10/",
     "twitter": null,
     "github": "https://github.com/apoorvmittal10"
+  },
+  {
+    "image": "/images/omniaibrahim.jpg",
+    "name": "Omnia Ibrahim",
+    "title": "Committer",
+    "linkedIn": "https://www.linkedin.com/in/omniagamal/",
+    "twitter": null,
+    "github": "https://github.com/OmniaGM"
   }
 ]

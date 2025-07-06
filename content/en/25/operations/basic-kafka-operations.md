@@ -1,6 +1,6 @@
 ---
-title: Basic Kafka Operations 
-description: Basic Kafka Operations 
+title: Basic Kafka Operations
+description: Basic Kafka Operations
 weight: 1
 tags: ['kafka', 'docs']
 aliases: 

@@ -1,6 +1,6 @@
 ---
-title: Message Format 
-description: Message Format 
+title: Message Format
+description: Message Format
 weight: 3
 tags: ['kafka', 'docs']
 aliases: 

@@ -1,6 +1,6 @@
 ---
-title: Hardware and OS 
-description: Hardware and OS 
+title: Hardware and OS
+description: Hardware and OS
 weight: 5
 tags: ['kafka', 'docs']
 aliases: 

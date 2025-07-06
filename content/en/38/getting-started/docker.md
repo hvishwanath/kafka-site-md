@@ -1,7 +1,7 @@
 ---
 title: Docker
 description: 
-weight: 6
+weight: 8
 tags: ['kafka', 'docs']
 aliases: 
 keywords: 

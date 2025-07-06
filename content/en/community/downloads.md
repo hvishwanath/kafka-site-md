@@ -10,6 +10,21 @@ The project goal is to have 3 releases a year, which means a release every 4 mon
 
 ## Supported releases
 
+### 3.9.1
+  * Released May 21, 2025 
+  * [Release Notes](https://dlcdn.apache.org/kafka/3.9.1/RELEASE_NOTES.html)
+  * Docker image: [apache/kafka:3.9.1](https://hub.docker.com/layers/apache/kafka/3.9.1/images/sha256-5862db4a63a6dd7d46fd14771b10a1b39e069c2c47f17d8e4640f960720a0ead). 
+  * Docker Native image: [apache/kafka-native:3.9.1](https://hub.docker.com/layers/apache/kafka-native/3.9.1/images/sha256-985da4a187ec9439df26a945984f894048ea67b2936d85a0cef273b16e32a113). 
+  * Source download: [kafka-3.9.1-src.tgz](https://dlcdn.apache.org/kafka/3.9.1/kafka-3.9.1-src.tgz) ([asc](https://downloads.apache.org/kafka/3.9.1/kafka-3.9.1-src.tgz.asc), [sha512](https://downloads.apache.org/kafka/3.9.1/kafka-3.9.1-src.tgz.sha512)) 
+  * Binary downloads: 
+    * Scala 2.12  \- [kafka_2.12-3.9.1.tgz](https://dlcdn.apache.org/kafka/3.9.1/kafka_2.12-3.9.1.tgz) ([asc](https://downloads.apache.org/kafka/3.9.1/kafka_2.12-3.9.1.tgz.asc), [sha512](https://downloads.apache.org/kafka/3.9.1/kafka_2.12-3.9.1.tgz.sha512))
+    * Scala 2.13  \- [kafka_2.13-3.9.1.tgz](https://dlcdn.apache.org/kafka/3.9.1/kafka_2.13-3.9.1.tgz) ([asc](https://downloads.apache.org/kafka/3.9.1/kafka_2.13-3.9.1.tgz.asc), [sha512](https://downloads.apache.org/kafka/3.9.1/kafka_2.13-3.9.1.tgz.sha512))
+We build for multiple versions of Scala. This only matters if you are using Scala and you want a version built for the same Scala version you use. Otherwise, any version should work (2.13 is recommended). 
+
+
+
+Kafka 3.9.1 fixes 66 issues since the 3.9.0 release. For more information, please read our [blog post](https://kafka.apache.org/blog#apache_kafka_391_release_announcement) and the detailed [Release Notes](https://dlcdn.apache.org/kafka/3.9.1/RELEASE_NOTES.html). 
+
 ### 4.0.0
 
   * Released March 18, 2025 

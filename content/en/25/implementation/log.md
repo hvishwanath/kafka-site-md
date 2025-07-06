@@ -1,6 +1,6 @@
 ---
-title: Log 
-description: Log 
+title: Log
+description: Log
 weight: 4
 tags: ['kafka', 'docs']
 aliases: 

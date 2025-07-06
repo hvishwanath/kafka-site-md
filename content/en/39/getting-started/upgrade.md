@@ -254,7 +254,7 @@ All upgrade steps remain same as upgrading to 3.5.0
 
 ### Notable changes in 3.5.1
 
-  * Upgraded the dependency, snappy-java, to a version which is not vulnerable to [CVE-2023-34455.](https://nvd.nist.gov/vuln/detail/CVE-2023-34455) You can find more information about the CVE at [Kafka CVE list.](https://kafka.apache.org/cve-list#CVE-2023-34455)
+  * Upgraded the dependency, snappy-java, to a version which is not vulnerable to [CVE-2023-34455.](https://nvd.nist.gov/vuln/detail/CVE-2023-34455) You can find more information about the CVE at [Kafka CVE list.](/community/cve-list/#CVE-2023-34455)
   * Fixed a regression introduced in 3.3.0, which caused `security.protocol` configuration values to be restricted to upper case only. After the fix, `security.protocol` values are case insensitive. See [KAFKA-15053](https://issues.apache.org/jira/browse/KAFKA-15053) for details. 
 
 

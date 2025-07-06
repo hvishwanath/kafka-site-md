@@ -1,6 +1,6 @@
 ---
-title: Security Overview 
-description: Security Overview 
+title: Security Overview
+description: Security Overview
 weight: 1
 tags: ['kafka', 'docs']
 aliases: 

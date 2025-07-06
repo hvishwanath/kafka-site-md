@@ -1,6 +1,6 @@
 ---
-title: ZooKeeper Authentication 
-description: ZooKeeper Authentication 
+title: ZooKeeper Authentication
+description: ZooKeeper Authentication
 weight: 6
 tags: ['kafka', 'docs']
 aliases: 

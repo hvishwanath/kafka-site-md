@@ -1,6 +1,6 @@
 ---
-title: User Guide 
-description: User Guide 
+title: User Guide
+description: User Guide
 weight: 2
 tags: ['kafka', 'docs']
 aliases: 
