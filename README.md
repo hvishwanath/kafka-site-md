@@ -1,122 +1,170 @@
-# Hugo Static Site with Docker
+# Apache Kafka Documentation Website
 
-This repository contains a Hugo-based static site with Docker support for both development and production environments. It includes multi-architecture build support for production deployments.
+This repository contains the source for the Apache Kafka documentation website. The site is built using [Hugo](https://gohugo.io/) with the [Docsy](https://www.docsy.dev/) theme, providing a modern, maintainable, and feature-rich documentation experience.
 
-## Prerequisites
+## Structure of the Website
 
-- Docker (20.10.0 or newer)
-- Make
-- Docker Hub account (for pushing images)
+### Documentation Versioning
 
-## Development
+The documentation is organized by Kafka versions in the `content/en` directory:
 
-### Local Development Server
-
-To start the local development server with hot-reload:
-
-```bash
-make serve
+```
+content/en/
+├── _index.md                 # Landing page
+├── 40/                       # Latest version (4.0)
+│   ├── apis/
+│   ├── configuration/
+│   ├── design/
+│   └── ...
+├── 39/                       # Previous version (3.9)
+├── 38/                       # Version 3.8
+└── ...
 ```
 
-This will:
-- Build the Hugo Docker image
-- Start a development server on http://localhost:1313
-- Watch for changes and automatically rebuild
-- Enable drafts and future posts
+Each version directory contains the complete documentation for that specific Kafka release. The latest version (currently 4.0) is the default documentation shown to users.
 
-### Building the Site Locally
+> **Important**: The version-specific documentation (under directories like `40/`, `39/`, etc.) is sourced from the corresponding release branches in the [apache/kafka](https://github.com/apache/kafka) repository. The `docs` directory in each branch serves as the source of truth. During the website build process, this content is copied to the appropriate version directory. For more details, see [KIP-1133](https://cwiki.apache.org/confluence/display/KAFKA/KIP-1133%3A+AK+Documentation+and+Website+in+Markdown).
 
-To build the site without starting the server:
+### Key Directories
 
-```bash
-make build
-```
+- `assets/`: Contains customizations and overrides
+  - `scss/`: Custom styling and theme variables
+  - `icons/`: Custom icons and branding
+  - `json/`: Search index configuration
 
-The built site will be available in the `output` directory.
+- `layouts/`: Custom Hugo templates and overrides
+  - `_default/`: Base templates
+  - `partials/`: Reusable template components
+  - `shortcodes/`: Custom Hugo shortcodes
 
-## Production
+- `data/`: JSON data files for dynamic content
+  - `testimonials.json`: Powers the testimonials page
+  - `committers.json`: Powers the committers page
 
-### Setting up Multi-architecture Builds
+### Features and Customizations
 
-Before building production images, ensure your Docker installation is set up for multi-architecture builds:
+1. **Offline Search**: Enabled via `offlineSearch: true` in `hugo.yaml`, providing fast client-side search functionality
+2. **Version Selector**: Allows users to switch between different Kafka versions
+3. **Custom Shortcodes**: Located in `layouts/shortcodes/` for enhanced content formatting
+4. **Custom Styling**: SCSS customizations in `assets/scss/`
 
-1. Enable Docker experimental features (if not already enabled):
-   ```bash
-   # Add to ~/.docker/config.json
+## Updating the Documentation Website
+
+### Adding a New Version
+
+1. Create a new directory in `content/en/` for the new version (e.g., `41/` for version 4.1)
+2. Update `hugo.yaml` to add the new version:
+   ```yaml
+   versions:
+     - version: "4.1"         # Add new version at the top
+       url: /41/
+     - version: "4.0"         # Update previous latest
+       url: /40/
+       archived_version: true  # Mark as archived
+     # ... other versions ...
+   ```
+3. Update the latest version pointer:
+   ```yaml
+   params:
+     version: 4.1             # Update version number
+     url_latest_version: /41/ # Update latest version URL
+   ```
+
+### Managing Testimonials and Committers
+
+#### Adding a New Testimonial
+
+1. Add the company's logo to `static/images/powered-by/`
+2. Add an entry to `data/testimonials.json`:
+   ```json
    {
-     "experimental": "enabled"
+     "link": "https://company-website.com/",
+     "logo": "company-logo.png",
+     "logoBgColor": "#FFFFFF",
+     "description": "Description of how the company uses Apache Kafka."
    }
    ```
 
-2. Install QEMU for multi-architecture support:
-   ```bash
-   docker run --privileged --rm tonistiigi/binfmt --install all
+#### Adding a New Committer
+
+1. Add the committer's photo to `static/images/`
+2. Add an entry to `data/committers.json`:
+   ```json
+   {
+     "image": "/images/committer-photo.jpg",
+     "name": "Committer Name",
+     "title": "Committer, and PMC member",
+     "linkedIn": "https://www.linkedin.com/in/committer/",
+     "twitter": "https://twitter.com/committer",
+     "github": "https://github.com/committer"
+   }
    ```
 
-### Building Production Images
+The website uses Hugo's data templates to automatically generate the testimonials and committers pages from these JSON files. The templates are located in:
+- `layouts/testimonials/`: Templates for rendering testimonials
+- `layouts/community/`: Templates for rendering committer information
 
-The production setup uses Nginx to serve the static files and supports both ARM64 and AMD64 architectures.
+### Updating Content
 
-To build and push the production image:
+1. For version-specific documentation:
+   - Make changes in the appropriate version directory
+   - Test changes locally before committing
 
-```bash
-make prod-image
-```
+2. For common content (e.g., landing page, community docs):
+   - Edit files directly in `content/en/`
 
-This will:
-- Build the Hugo site
-- Create a multi-architecture Nginx image (ARM64 and AMD64)
-- Push the image to Docker Hub
+## Build and Test
 
-### Testing Production Image Locally
+### Prerequisites
 
-To test the production image locally:
+- Docker (20.10.0 or newer)
+- Make
 
-```bash
-make prod-run
-```
+### Local Development
 
-The site will be available at http://localhost:8080
+1. Start the development server with hot-reload:
+   ```bash
+   make serve
+   ```
+   This will:
+   - Build the Hugo Docker image
+   - Start a development server on http://localhost:1313
+   - Watch for changes and automatically rebuild
+   - Enable drafts and future posts
 
-## Configuration
+2. Build the site without starting the server:
+   ```bash
+   make build
+   ```
+   The built site will be available in the `output` directory.
 
-### Environment Variables
+### Production Build
 
-The following variables can be configured in the Makefile:
+1. Build and test the production image locally:
+   ```bash
+   make prod-run
+   ```
+   The site will be available at http://localhost:8080
 
-- `OUTPUT_DIR`: Directory for built files (default: `output`)
-- `DOCKER_IMAGE`: Hugo builder image name
-- `PROD_IMAGE`: Production Nginx image name
+2. Build production image for deployment:
+   ```bash
+   make prod-image
+   ```
+   This creates a multi-architecture Nginx image (ARM64 and AMD64) optimized for production.
 
-### Nginx Configuration
+### Cleaning Up
 
-The Nginx configuration is located in `scripts/nginx.conf` and includes:
-- Gzip compression
-- Cache control headers
-- Security headers
-- Static file optimizations
-
-## Cleaning Up
-
-To clean up built files and Docker images:
-
+Remove built files and Docker images:
 ```bash
 make clean
 ```
 
-This will:
-- Remove the `output` directory
-- Remove Docker images
-- Clean up buildx builder instance
+## Contributing
 
-## Directory Structure
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test locally using `make serve`
+5. Submit a pull request
 
-```
-.
-├── Dockerfile          # Hugo builder Dockerfile
-├── Dockerfile.prod     # Production Nginx Dockerfile
-├── Makefile           # Build automation
-├── scripts/
-│   └── nginx.conf     # Nginx configuration
-└── content/           # Hugo content files
-```
+For more details about the migration to Markdown and the overall architecture, see [KIP-1133](https://cwiki.apache.org/confluence/display/KAFKA/KIP-1133%3A+AK+Documentation+and+Website+in+Markdown).
