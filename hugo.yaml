@@ -224,7 +224,7 @@ params:
 
   # A link to latest version of the docs. Used in the "version-banner" partial to
   # point people to the main doc site.
-  url_latest_version: /39/
+  url_latest_version: /40/
 
   # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
   github_repo: https://github.com/hvishwanath/kafka-site-md

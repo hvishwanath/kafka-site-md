@@ -1,5 +1,11 @@
 [
   {
+    "link": "https://dattell.com/",
+    "logo": "dattell.svg",
+    "logoBgColor": "#FFFFFF",
+    "description": "Dattell is a data architecture company that uses Apache Kafka to power the core of our own platform operations and provides fully managed Kafka support services for organizations worldwide. Kafka plays a central role in the event-driven systems we design, helping teams build resilient, high-throughput architectures across cloud and on-prem deployments."
+  },
+  {
     "link": "https://www.falkonsms.com/",
     "logo": "falkon-sms.png",
     "logoBgColor": "#FFFFFF",
@@ -502,6 +508,12 @@
     "logo": "linkedin.jpg",
     "logoBgColor": "#007bb6",
     "description": "Apache Kafka is used at LinkedIn for activity stream data and operational metrics. This powers various products like LinkedIn Newsfeed, LinkedIn Today in addition to our offline analytics systems like Hadoop."
+  },
+  {
+    "link": "http://littlehorse.io",
+    "logo": "LittleHorse.png",
+    "logoBgColor": "#007bb6",
+    "description": "The Apache Kafka ecosystem is used at LittleHorse as the foundation of the LittleHorse kernel, a developer-first workflow engine."
   },
   {
     "link": "https://www.itau.com.br",

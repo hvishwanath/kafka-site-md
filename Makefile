@@ -2,7 +2,7 @@
 OUTPUT_DIR := output
 DOCKER_IMAGE := hvishwanath/hugo:v0.123.7-ext
 #PROD_IMAGE := hvishwanath/kafka-site-md:1.2.0
-PROD_IMAGE := us-west1-docker.pkg.dev/play-394201/kafka-site-md/kafka-site-md:1.2.0
+PROD_IMAGE := us-west1-docker.pkg.dev/play-394201/kafka-site-md/kafka-site-md:1.6.0
 
 .PHONY: build serve clean docker-image prod-image prod-run buildx-setup
 

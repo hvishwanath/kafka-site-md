@@ -387,7 +387,7 @@
   {
     "image": "/images/lucasbru.jpg",
     "name": "Lucas Brutschy",
-    "title": "Committer",
+    "title": "Committer, and PMC member",
     "linkedIn": "https://www.linkedin.com/in/lbrutschy/",
     "twitter": null,
     "github": "https://github.com/lucasbru"
@@ -463,5 +463,13 @@
     "linkedIn": "https://www.linkedin.com/in/omniagamal/",
     "twitter": null,
     "github": "https://github.com/OmniaGM"
+  },
+  {
+    "image": "/images/poanyang.jpg",
+    "name": "PoAn Yang",
+    "title": "Committer",
+    "linkedIn": "https://www.linkedin.com/in/poan-yang/",
+    "twitter": null,
+    "github": "https://github.com/FrankYang0529"
   }
 ]
