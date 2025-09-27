@@ -1,0 +1,193 @@
+name: Build Kafka Site
+
+on:
+  push:
+    branches: [ markdown ]
+  pull_request:
+    branches: [ markdown ]
+  workflow_dispatch:
+    inputs:
+      build_mode:
+        description: 'Build mode'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+        - full
+        - production
+        - preview
+      version:
+        description: 'Specific version (for incremental builds)'
+        required: false
+        type: string
+      versions:
+        description: 'Comma-separated versions (for full builds)'
+        required: false
+        default: '4.0,3.9,3.8,3.7,3.6'
+        type: string
+
+env:
+  KAFKA_VERSIONS: '4.0,3.9,3.8,3.7,3.6,3.5'
+
+jobs:
+  # Job for full site builds (on main branch pushes)
+  full-build:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/markdown'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout site repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Cache Hugo
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/hugo
+        key: ${{ runner.os }}-hugo-${{ hashFiles('hugo.yaml') }}
+    
+    - name: Full site build
+      run: |
+        python docs_build.py build --mode full \
+          --versions "${{ env.KAFKA_VERSIONS }}" \
+          --kafka-repo-url https://github.com/apache/kafka.git \
+          --site-repo-url https://github.com/apache/kafka-site.git \
+          --log-level INFO
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: site-build-full
+        path: output/
+        retention-days: 30
+    
+    - name: Deploy to staging (if configured)
+      if: success()
+      run: |
+        echo "Deploy to staging environment"
+        # Add your deployment commands here
+
+  # Job for PR builds (incremental/preview)
+  pr-build:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout site repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Preview build
+      run: |
+        python docs_build.py build --mode preview \
+          --kafka-repo-url https://github.com/apache/kafka.git \
+          --site-repo-url https://github.com/apache/kafka-site.git \
+          --log-level INFO
+    
+    - name: Upload preview artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: site-build-preview-pr-${{ github.event.number }}
+        path: output/
+        retention-days: 7
+    
+    - name: Comment PR with preview link
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '🚀 Preview build completed! Download artifacts to view the preview.'
+          })
+
+  # Job for manual workflow dispatch
+  manual-build:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout site repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Manual build
+      run: |
+        if [ "${{ github.event.inputs.build_mode }}" = "incremental" ] && [ -n "${{ github.event.inputs.version }}" ]; then
+          python docs_build.py build --mode incremental \
+            --version "${{ github.event.inputs.version }}" \
+            --kafka-repo-url https://github.com/apache/kafka.git \
+            --site-repo-url https://github.com/apache/kafka-site.git \
+            --log-level INFO
+        elif [ "${{ github.event.inputs.build_mode }}" = "full" ]; then
+          VERSIONS="${{ github.event.inputs.versions }}"
+          if [ -z "$VERSIONS" ]; then
+            VERSIONS="${{ env.KAFKA_VERSIONS }}"
+          fi
+          python docs_build.py build --mode full \
+            --versions "$VERSIONS" \
+            --kafka-repo-url https://github.com/apache/kafka.git \
+            --site-repo-url https://github.com/apache/kafka-site.git \
+            --log-level INFO
+        else
+          python docs_build.py build --mode "${{ github.event.inputs.build_mode }}" \
+            --kafka-repo-url https://github.com/apache/kafka.git \
+            --site-repo-url https://github.com/apache/kafka-site.git \
+            --log-level INFO
+        fi
+    
+    - name: Upload manual build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: site-build-manual-${{ github.event.inputs.build_mode }}
+        path: output/
+        retention-days: 14
+
+  # Job for production deployment
+  deploy-production:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/markdown'
+    needs: full-build
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: site-build-full
+        path: ./site-output
+    
+    - name: Deploy to production
+      run: |
+        echo "Deploying to production..."
+        # Add your production deployment commands here
+        # Examples:
+        # - Upload to S3/CloudFront
+        # - Deploy to GitHub Pages
+        # - Push to production server
+        # - Update CDN cache
+    
+    - name: Notify deployment
+      if: success()
+      run: |
+        echo "Production deployment successful!"
+        # Add notification logic (Slack, email, etc.) 
