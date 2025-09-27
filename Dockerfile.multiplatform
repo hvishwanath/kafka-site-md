@@ -61,6 +61,9 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 # Create working directory
 WORKDIR /src
 
+# Configure Git to trust the working directory
+RUN git config --global --add safe.directory /src
+
 # Verify installations
 RUN node --version && \
     npm --version && \
